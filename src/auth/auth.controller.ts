@@ -6,7 +6,8 @@ import { ApiTags } from '@nestjs/swagger';
 export class AuthController {
 
     @Post('/signup')
-    signup() {
+    signup() {}
 
-    }
+    @Post('/signin')
+    signin() {}
 }

@@ -25,6 +25,14 @@ export class AppConfigService {
         }
     }
 
+    get authOptions() {
+        return {
+            jwtSecretKey: this.get('JWT_SECRET_KEY'),
+            jwtTokenExpirationTime: this.get<number>('JWT_TOKEN_EXPIRATION_TIME'),
+            jwtRefreshTokenExpirationTime: this.get<number>('JWT_REFRESH_TOKEN_EXPIRATION_TIME'),
+        }
+    }
+
     get<T = any>(propertyPath: string, defaultValue?: T): T | undefined {
         return this.configService.get<T>(propertyPath, defaultValue);
     }
