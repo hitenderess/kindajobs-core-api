@@ -5,9 +5,12 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('auth')
 export class AuthController {
 
-    @Post('/signup')
-    signup() {}
+    @Post('otp-token')
+    requestOtpToken() {
+        
+    }
+
 
     @Post('/signin')
-    signin() {}
+    adminSignin() {}
 }

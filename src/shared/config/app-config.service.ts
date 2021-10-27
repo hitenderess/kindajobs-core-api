@@ -33,6 +33,14 @@ export class AppConfigService {
         }
     }
 
+    get otpTokenExpirationTime(): number {
+        return this.get<number>('OTP_EXPIRATION_TIME_IN_SECONDS')
+    }
+
+    get otpTokenRequestTime(): number {
+        return this.get<number>('OTP_REQUEST_TIME_IN_SECONDS')
+    }
+
     get<T = any>(propertyPath: string, defaultValue?: T): T | undefined {
         return this.configService.get<T>(propertyPath, defaultValue);
     }
