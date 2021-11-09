@@ -13,4 +13,9 @@ export class AuthController {
 
     @Post('/signin')
     adminSignin() {}
+
+    @Post('/userlogin')
+    userLogin(){}
+
+    
 }

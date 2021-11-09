@@ -20,5 +20,5 @@ export class Skill extends AbstractEntity {
     @ManyToOne(
         () => SkillCategory
     )
-    category: Skill;
+    category: SkillCategory;
 }
