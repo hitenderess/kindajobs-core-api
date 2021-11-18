@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { SnakeNamingStrategy } from "../typeorm/snake-naming-stratergy";
 import * as path from "path";
 import { Injectable } from "@nestjs/common";
+import { DefaultConfiguration } from './default-config';
 
 @Injectable()
 export class AppConfigService {
@@ -30,6 +31,7 @@ export class AppConfigService {
             jwtSecretKey: this.get('JWT_SECRET_KEY'),
             jwtTokenExpirationTime: this.get<number>('JWT_TOKEN_EXPIRATION_TIME'),
             jwtRefreshTokenExpirationTime: this.get<number>('JWT_REFRESH_TOKEN_EXPIRATION_TIME'),
+            verificationTokenDuration: DefaultConfiguration.authOptions.verificationTokenDuration,
         }
     }
 

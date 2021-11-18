@@ -3,6 +3,14 @@ import { PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeepPartial
 
 export abstract class AbstractEntity {
 
+    public constructor(input?: DeepPartial<AbstractEntity>) {
+        if (input) {
+            for (const [key, value] of Object.entries(input)) {
+                (this as any)[key] = value;
+            }
+        }
+    }
+    
     @ApiProperty()
     @PrimaryGeneratedColumn()
     id: number;

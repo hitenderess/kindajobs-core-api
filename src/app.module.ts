@@ -29,6 +29,7 @@ import { UserContractFeedbackModule } from './user-contract-feedback/user-contra
 import { UserContractRefundsModule } from './user-contract-refunds/user-contract-refunds.module';
 import { UserNotificationsModule } from './user-notifications/user-notifications.module';
 import { UserFeedbackModule } from './user-feedback/user-feedback.module';
+import { SharedModule } from './shared/shared.module';
 
 @Module({
   imports: [
@@ -64,6 +65,7 @@ import { UserFeedbackModule } from './user-feedback/user-feedback.module';
     UserContractRefundsModule,
     UserNotificationsModule,
     UserFeedbackModule,
+    SharedModule,
   ],
   controllers: [AppController],
 })
