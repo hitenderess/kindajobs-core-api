@@ -1,4 +1,4 @@
-import { AbstractEntity } from "src/shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
 import { BeforeInsert, Column, Entity, Index } from "typeorm";
 import * as moment from 'moment';
 import { IsDefined, IsNumberString } from "class-validator";

@@ -1,8 +1,6 @@
 export interface AccessTokenPayload {
-    sub: string;
+    sub: number;
     aud: string;
-    mobileNumber?: string;
-    emailAddress?: string;
-    firstName?: string;
-    lastName?: string;
+    phoneNumber: string;
+    token?: string
 }

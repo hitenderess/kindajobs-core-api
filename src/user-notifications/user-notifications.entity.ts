@@ -1,7 +1,7 @@
-import { Auth } from "src/auth/entities/auth.entity";
-import { Role } from "src/role/role.entity";
+import { Auth } from "../auth/entities/auth.entity";
+import { Role } from "../role/role.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
-import { AbstractEntity } from "../shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
 
 @Entity('user_notifications')
 export class UserNotifications extends AbstractEntity {

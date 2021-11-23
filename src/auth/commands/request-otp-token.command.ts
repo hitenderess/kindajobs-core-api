@@ -1,3 +1,3 @@
 export class RequestOtpTokenCommand {
-    constructor(public readonly mobileNumber: string) {}
+    constructor(public readonly phoneNumber: string) {}
 }

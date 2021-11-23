@@ -1,8 +1,8 @@
-import { JobApplication } from "src/job-application/job-application.entity";
-import { Job } from "src/job/job.entity";
-import { UserContracts } from "src/user-contracts/user-contracts.entity";
+import { JobApplication } from "../job-application/job-application.entity";
+import { Job } from "../job/job.entity";
+import { UserContracts } from "../user-contracts/user-contracts.entity";
 import { Column, Entity, ManyToOne, OneToOne } from "typeorm";
-import { AbstractEntity } from "../shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
 
 @Entity('user_contract_feedback')
 export class UserContractsFeedback extends AbstractEntity {
@@ -26,7 +26,7 @@ export class UserContractsFeedback extends AbstractEntity {
     })
     is_reported: boolean;
 
-    @ManyToOne(()=> UserContracts, contract => contract.feedback_messages)
-    contract: UserContracts;
+    // @ManyToOne(()=> UserContracts, contract => contract.feedback_messages)
+    // contract: UserContracts;
 
 }

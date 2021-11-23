@@ -1,19 +1,15 @@
 import { application } from "express";
-import { Auth } from "src/auth/entities/auth.entity";
-import { JobApplication } from "src/job-application/job-application.entity";
-import { JobFiles } from "src/job-files/job-files.entity";
-import { UserContracts } from "src/user-contracts/user-contracts.entity";
+import { Auth } from "../auth/entities/auth.entity";
+import { JobApplication } from "../job-application/job-application.entity";
+import { JobFiles } from "../job-files/job-files.entity";
+import { UserContracts } from "../user-contracts/user-contracts.entity";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
-import { AbstractEntity } from "../shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
+import { JobType } from "@shared/enums";
+import { JobPicture } from "./interfaces";
 
 @Entity('job')
 export class Job extends AbstractEntity {
-
-    
-    @Column({
-        default: true
-    })
-    is_active: boolean;
 
     @Column()
     title: string;
@@ -21,29 +17,62 @@ export class Job extends AbstractEntity {
     @Column()
     description: string;
 
-    @Column()
-    job_price:number;
+    @Column({
+        type: 'enum',
+        enum: JobType,
+        default: JobType.Job
+    })
+    type: JobType
+
+    @Column("simple-json")
+    pictures: JobPicture
 
     @Column()
-    commission:number;
+    duration: number
+
+    @Column({
+        default: false
+    })
+    protected: boolean
+    
+    @Column({
+        default: false
+    })
+    prioritize: boolean
+
+    @Column({
+        default: 1
+    })
+    requiredCandidates: number
 
     @Column()
-    total_amount:number;
+    price: number;
 
     @Column()
-    job_status:string;
+    status: string;
 
+    @Column({
+        default: true
+    })
+    isActive: boolean;
+
+    @Column()
+    commission: number;
+
+    @Column('simple-array')
+    tools: []
+    
     @ManyToOne(() => Auth, auth => auth.jobs)
     user: Auth;
 
-    @OneToMany(() => JobApplication, application => application.job)
-    applications:JobApplication[];
+    // @OneToMany(() => JobApplication, application => application.job)
+    // applications:JobApplication[];
 
-    @OneToMany(() => JobFiles, files => files.job)
-    files:JobFiles[];
+    // @OneToMany(() => JobFiles, files => files.job)
+    // files:JobFiles[];
 
-    @OneToMany(() => UserContracts, contract => contract.job)
-    contracts:UserContracts[];
+    // @OneToMany(() => UserContracts, contract => contract.job)
+    // contracts:UserContracts[];
 
     
 }

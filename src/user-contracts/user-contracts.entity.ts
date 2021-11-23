@@ -1,10 +1,10 @@
-import { JobApplication } from "src/job-application/job-application.entity";
-import { Job } from "src/job/job.entity";
-import { UserContractsFeedback } from "src/user-contract-feedback/user-contract-payments.entity";
-import { UserContractsMessages } from "src/user-contract-messages/user-contract-messages.entity";
-import { UserContractsPayments } from "src/user-contract-payments/user-contract-payments.entity";
+import { JobApplication } from "../job-application/job-application.entity";
+import { Job } from "../job/job.entity";
+import { UserContractsFeedback } from "../user-contract-feedback/user-contract-payments.entity";
+import { UserContractsMessages } from "../user-contract-messages/user-contract-messages.entity";
+import { UserContractsPayments } from "../user-contract-payments/user-contract-payments.entity";
 import { Column, Entity, ManyToOne, OneToMany, OneToOne } from "typeorm";
-import { AbstractEntity } from "../shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
 
 @Entity('user_contracts')
 export class UserContracts extends AbstractEntity {
@@ -30,20 +30,20 @@ export class UserContracts extends AbstractEntity {
     @Column()
     status:string;
 
-    @ManyToOne(()=> Job, job => job.contracts)
-    job: Job
+    // @ManyToOne(()=> Job, job => job.contracts)
+    // job: Job
 
-    @OneToOne(() => JobApplication, application => application.contract)
-    application: JobApplication;
+    // @OneToOne(() => JobApplication, application => application.contract)
+    // application: JobApplication;
 
-    @OneToMany(() => UserContractsMessages, messages => messages.contract)
-    messages: UserContractsMessages[];
+    // @OneToMany(() => UserContractsMessages, messages => messages.contract)
+    // messages: UserContractsMessages[];
 
-    @OneToMany(() => UserContractsPayments, payments => payments.contract)
-    payments: UserContractsPayments[];
+    // @OneToMany(() => UserContractsPayments, payments => payments.contract)
+    // payments: UserContractsPayments[];
 
-    @OneToMany(() => UserContractsFeedback, messages => messages.contract)
-    feedback_messages: UserContractsFeedback[];
+    // @OneToMany(() => UserContractsFeedback, messages => messages.contract)
+    // feedback_messages: UserContractsFeedback[];
 
 
 

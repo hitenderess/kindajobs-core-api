@@ -1,7 +1,7 @@
-import { Auth } from "src/auth/entities/auth.entity";
-import { Job } from "src/job/job.entity";
+import { Auth } from "../auth/entities/auth.entity";
+import { Job } from "../job/job.entity";
 import { Column, Entity, ManyToOne } from "typeorm";
-import { AbstractEntity } from "../shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
 
 @Entity('job-files')
 export class JobFiles extends AbstractEntity {
@@ -24,6 +24,6 @@ export class JobFiles extends AbstractEntity {
     @Column()
     file_path: string;
 
-    @ManyToOne(() => Job, job => job.files)
-    job: Job;
+    // @ManyToOne(() => Job, job => job.files)
+    // job: Job;
 }

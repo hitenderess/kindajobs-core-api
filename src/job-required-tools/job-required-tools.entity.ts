@@ -1,6 +1,6 @@
-import { Job } from "src/job/job.entity";
+import { Job } from "../job/job.entity";
 import { Column, Entity, ManyToOne } from "typeorm";
-import { AbstractEntity } from "../shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
 
 @Entity('job-required-tools')
 export class JobRequiredTools extends AbstractEntity {
@@ -14,8 +14,8 @@ export class JobRequiredTools extends AbstractEntity {
     @Column()
     description: string;
 
-    @ManyToOne(() => Job, job => job.files)
-    job: Job;
+    // @ManyToOne(() => Job, job => job.files)
+    // job: Job;
 
     
 }

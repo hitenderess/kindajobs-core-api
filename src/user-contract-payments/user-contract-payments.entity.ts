@@ -1,9 +1,9 @@
-import { JobApplication } from "src/job-application/job-application.entity";
-import { Job } from "src/job/job.entity";
-import { UserContractsRefunds } from "src/user-contract-refunds/user-contract-refunds.entity";
-import { UserContracts } from "src/user-contracts/user-contracts.entity";
+import { JobApplication } from "../job-application/job-application.entity";
+import { Job } from "../job/job.entity";
+import { UserContractsRefunds } from "../user-contract-refunds/user-contract-refunds.entity";
+import { UserContracts } from "../user-contracts/user-contracts.entity";
 import { Column, Entity, ManyToOne, OneToMany, OneToOne } from "typeorm";
-import { AbstractEntity } from "../shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
 
 @Entity('user_contract_payments')
 export class UserContractsPayments extends AbstractEntity {
@@ -20,10 +20,10 @@ export class UserContractsPayments extends AbstractEntity {
     @Column()
     total_amount: number;
 
-    @ManyToOne(()=> UserContracts, contract => contract.payments)
-    contract: UserContracts;
+    // @ManyToOne(()=> UserContracts, contract => contract.payments)
+    // contract: UserContracts;
 
-    @OneToMany(()=> UserContractsRefunds, refund => refund.payment)
-    refunds: UserContractsRefunds;
+    // @OneToMany(()=> UserContractsRefunds, refund => refund.payment)
+    // refunds: UserContractsRefunds;
 
 }

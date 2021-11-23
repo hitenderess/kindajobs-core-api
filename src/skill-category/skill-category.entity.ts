@@ -1,4 +1,4 @@
-import { AbstractEntity } from "src/shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
 import { Column, Entity } from "typeorm";
 
 @Entity('master_skill_category')

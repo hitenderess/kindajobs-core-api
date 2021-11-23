@@ -1,9 +1,9 @@
-import { Job } from "src/job/job.entity";
-import { AbstractEntity } from "src/shared/entities/abstract.entity";
-import { Skill } from "src/skill/skill.entity";
-import { UserFeedbacks } from "src/user-feedback/user-feedback.entity";
-import { UserNotifications } from "src/user-notifications/user-notifications.entity";
-import { UserProfile } from "src/user-profile/user-profile.entity";
+import { Job } from "../../job/job.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
+import { Skill } from "../../skill/skill.entity";
+import { UserFeedbacks } from "../../user-feedback/user-feedback.entity";
+import { UserNotifications } from "../../user-notifications/user-notifications.entity";
+import { UserProfile } from "../../user-profile/user-profile.entity";
 import { Column, Entity, OneToOne, JoinColumn, OneToMany, ManyToMany } from "typeorm";
 
 @Entity('users')

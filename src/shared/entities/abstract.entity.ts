@@ -18,10 +18,4 @@ export abstract class AbstractEntity {
         name: 'updated_at',
     })
     updatedAt: Date;
-
-    @Column()
-    created_by:number;
-
-    @Column()
-    modified_by:number;
 }

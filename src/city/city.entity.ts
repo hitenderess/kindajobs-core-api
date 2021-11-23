@@ -1,5 +1,5 @@
 import { Column, Entity } from "typeorm";
-import { AbstractEntity } from "../shared/entities/abstract.entity";
+import { AbstractEntity } from "@shared/entities/abstract.entity";
 
 @Entity('master_city')
 export class City extends AbstractEntity {
