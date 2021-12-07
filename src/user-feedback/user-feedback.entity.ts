@@ -1,4 +1,4 @@
-import { Auth } from "../auth/entities/auth.entity";
+import { User } from "../user/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
 import { AbstractEntity } from "@shared/entities/abstract.entity";
 
@@ -11,8 +11,8 @@ export class UserFeedbacks extends AbstractEntity {
     @Column()
     user_id: number;
 
-    @ManyToOne(() => Auth, auth => auth.feedbacks)
-    @JoinColumn()
-    user: Auth;
+    // @ManyToOne(() => User, auth => auth.feedbacks)
+    // @JoinColumn()
+    // user: Auth;
 
 }

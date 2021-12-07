@@ -22,10 +22,10 @@ import { AccessTokenPayload } from '../auth/interfaces/auth.interface';
 @CrudAuth({
     property: 'user',
     filter: (user: AccessTokenPayload) => ({
-        user_id: +user.sub,
+        userId: +user.sub,
     }),
     persist: (user: AccessTokenPayload) => ({
-        user_id: +user.sub,
+        userId: +user.sub,
     }),
 })
 export class JobController implements CrudController<Job> {

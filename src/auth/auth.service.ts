@@ -11,6 +11,8 @@ import { User } from "user/user.entity";
 import { AppConfigService } from "@shared/config/app-config.service";
 import { AccessTokenPayload } from "./interfaces/auth.interface";
 import { UserType } from "@shared/enums";
+import { RequestOtp, Signup } from "./auth.dto";
+import { OtpOver } from "@shared/enums/auth";
 
 @Injectable()
 export class AuthService {
@@ -21,8 +23,10 @@ export class AuthService {
         private readonly appConfig: AppConfigService
     ){}
     
-    requestOtpToken(phoneNUmber: string) {
-        return this.commandBus.execute(new RequestOtpTokenCommand(phoneNUmber))
+    requestOtpToken(input: RequestOtp) {
+        if (input.over === OtpOver.Phone) {
+            return this.commandBus.execute(new RequestOtpTokenCommand(input.resource))
+        }
     }
 
     async verifyOtpToken(phoneNumber: string, otp: number) {
@@ -35,7 +39,7 @@ export class AuthService {
 
         let user = await this.userService.findByPhoneNumber(extantOtpToken.phoneNumber);
         if (!user) {
-            user = await this.userService.createBasicOne(phoneNumber, UserType.Privider)
+            // user = await this.userService.createBasicOne(phoneNumber, UserType.Privider)
         }
         return await this.buildAccessToken(user);
     }
@@ -48,5 +52,9 @@ export class AuthService {
         }
         const jwtToken = await this.jwtService.signAsync(payload , { expiresIn: this.appConfig.authOptions.jwtTokenExpirationTime });
         return { ...payload, token: jwtToken }
+    }
+
+    async signupUser(input: Signup) {
+        return this.userService.createOne(input)
     }
 }

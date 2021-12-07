@@ -1,50 +1,44 @@
-import { Auth } from "../auth/entities/auth.entity";
+import { Auth } from "../auth/entities/auth.entity-depricated";
 import { Role } from "../role/role.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
 import { AbstractEntity } from "@shared/entities/abstract.entity";
+import { User } from "user/user.entity";
 
 @Entity('user_profile')
 export class UserProfile extends AbstractEntity {
 
     @Column()
-    first_name: string;
+    driverLicenseNumber: string;
 
     @Column()
-    last_name: string;
+    ssn: string;
+
+    @Column('simple-array')
+    skills: [];
 
     @Column()
-    driver_license_no: string;
+    accountHolder: string;
 
     @Column()
-    ssn_id: string;
-
+    accountNumber: string;
 
     @Column({
-        default: true
+        length: 500,
+        nullable: true
     })
-    newsletter_subscription: boolean;
-
+    streetAddress: string;
 
     @Column({
-        length: 500
+        nullable: true
     })
-    street_address: string;
-
-    @Column()
     cityId: number;
 
     @Column({
-        default: true
+        nullable: true
     })
-    termsconditionaccepted: boolean;
-
-    @Column()
     stateId: number;
 
-    @OneToOne(() => Auth, auth => auth.profile)
+    @OneToOne(() => User, user => user.profile)
     @JoinColumn()
     user: Auth;
-
-    @ManyToOne(() => Role)
-    role: Role
 }

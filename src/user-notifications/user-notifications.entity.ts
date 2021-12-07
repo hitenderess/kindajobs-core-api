@@ -1,4 +1,4 @@
-import { Auth } from "../auth/entities/auth.entity";
+import { Auth } from "../auth/entities/auth.entity-depricated";
 import { Role } from "../role/role.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
 import { AbstractEntity } from "@shared/entities/abstract.entity";
@@ -20,10 +20,10 @@ export class UserNotifications extends AbstractEntity {
     })
     is_read: boolean;
 
-    @ManyToOne(() => Auth, auth => auth.notifications)
-    @JoinColumn()
-    user: Auth;
+    // @ManyToOne(() => Auth, auth => auth.notifications)
+    // @JoinColumn()
+    // user: Auth;
 
-    @ManyToOne(() => Role)
-    role: Role
+    // @ManyToOne(() => Role)
+    // role: Role
 }

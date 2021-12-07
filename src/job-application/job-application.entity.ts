@@ -1,4 +1,4 @@
-import { Auth } from "../auth/entities/auth.entity";
+import { Auth } from "../auth/entities/auth.entity-depricated";
 import { Job } from "../job/job.entity";
 import { UserContracts } from "../user-contracts/user-contracts.entity";
 import { Column, Entity, ManyToOne, OneToOne } from "typeorm";

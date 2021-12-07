@@ -1,13 +1,13 @@
-import { application } from "express";
-import { Auth } from "../auth/entities/auth.entity";
-import { JobApplication } from "../job-application/job-application.entity";
-import { JobFiles } from "../job-files/job-files.entity";
-import { UserContracts } from "../user-contracts/user-contracts.entity";
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { User } from "../user/user.entity";
+import { Column, Entity, ManyToOne } from "typeorm";
 import { AbstractEntity } from "@shared/entities/abstract.entity";
 import { JobType } from "@shared/enums";
 import { JobPicture } from "./interfaces";
 
+class Geometry {
+    lat: number;
+    long: number;
+}
 @Entity('job')
 export class Job extends AbstractEntity {
 
@@ -61,18 +61,10 @@ export class Job extends AbstractEntity {
 
     @Column('simple-array')
     tools: []
+
+    @Column('simple-json')
+    jobLocation: Geometry;
     
-    @ManyToOne(() => Auth, auth => auth.jobs)
-    user: Auth;
-
-    // @OneToMany(() => JobApplication, application => application.job)
-    // applications:JobApplication[];
-
-    // @OneToMany(() => JobFiles, files => files.job)
-    // files:JobFiles[];
-
-    // @OneToMany(() => UserContracts, contract => contract.job)
-    // contracts:UserContracts[];
-
-    
+    // @ManyToOne(() => User, user => user.jobs)
+    // user: Auth;
 }

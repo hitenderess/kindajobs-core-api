@@ -1,9 +1,21 @@
 import { AbstractEntity } from "@shared/entities/abstract.entity";
 import { UserType } from "@shared/enums";
-import { Column, Entity } from "typeorm";
+import { Column, Entity, OneToOne } from "typeorm";
+import { UserProfile } from "user-profile/user-profile.entity";
 
 @Entity()
 export class User extends AbstractEntity {
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
+
+    @Column({
+        nullable: true
+    })
+    profilePic: string;
 
     @Column()
     phoneNumber: string;
@@ -41,7 +53,7 @@ export class User extends AbstractEntity {
     @Column({
         type: 'enum',
         enum: UserType,
-        default: UserType.Privider
+        default: UserType.Provider
     })
     type: string;
 
@@ -49,4 +61,11 @@ export class User extends AbstractEntity {
         default: true
     })
     isActive: boolean;
+
+    @OneToOne(
+        () => UserProfile,
+        profile => profile.user,
+        { cascade: true }
+    )
+    profile: UserProfile;
 }

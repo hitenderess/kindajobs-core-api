@@ -42,19 +42,19 @@ export class Auth extends AbstractEntity {
     @Column()
     passwordResetToken: string;
 
-    @OneToOne(() => UserProfile, profile => profile.user)
-    profile: UserProfile;
+    // @OneToOne(() => UserProfile, profile => profile.user)
+    // profile: UserProfile;
 
-    @OneToMany(() => Job, job => job.user)
-    jobs:Job[];
+    // @OneToMany(() => Job, job => job.user)
+    // jobs:Job[];
 
-    @ManyToMany(() => Skill )
-    skills:Skill[];
+    // @ManyToMany(() => Skill )
+    // skills:Skill[];
 
-    @OneToMany(() => UserNotifications, notification => notification.user)
-    notifications:UserNotifications[];
+    // @OneToMany(() => UserNotifications, notification => notification.user)
+    // notifications:UserNotifications[];
 
-    @OneToMany(() => UserFeedbacks, feedback => feedback.user)
-    feedbacks:UserFeedbacks[];
+    // @OneToMany(() => UserFeedbacks, feedback => feedback.user)
+    // feedbacks:UserFeedbacks[];
     
 }
