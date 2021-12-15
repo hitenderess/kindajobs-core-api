@@ -30,6 +30,12 @@ import { UserContractRefundsModule } from './user-contract-refunds/user-contract
 import { UserNotificationsModule } from './user-notifications/user-notifications.module';
 import { UserFeedbackModule } from './user-feedback/user-feedback.module';
 import { SmsModule } from 'sms/sms.module';
+import { EmailModule } from './email/email.module';
+import { ReviewModule } from './review/review.module';
+import { NotificationModule } from './notification/notification.module';
+import { TransactionModule } from './transaction/transaction.module';
+import { JobReportReasonModule } from './job-report-reason/job-report-reason.module';
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -66,6 +72,12 @@ import { SmsModule } from 'sms/sms.module';
     UserNotificationsModule,
     UserFeedbackModule,
     SmsModule,
+    EmailModule,
+    ReviewModule,
+    NotificationModule,
+    TransactionModule,
+    JobReportReasonModule,
+    MessageModule,
   ],
   controllers: [AppController],
 })

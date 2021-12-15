@@ -13,6 +13,7 @@ import { AccessTokenPayload } from "./interfaces/auth.interface";
 import { UserType } from "@shared/enums";
 import { RequestOtp, Signup } from "./auth.dto";
 import { OtpOver } from "@shared/enums/auth";
+import { EmailService } from "email/email.service";
 
 @Injectable()
 export class AuthService {
@@ -20,13 +21,15 @@ export class AuthService {
         private readonly commandBus: CommandBus,
         private readonly jwtService: JwtService,
         private readonly userService: UserService,
-        private readonly appConfig: AppConfigService
+        private readonly appConfig: AppConfigService,
+        private readonly emailService: EmailService
     ){}
     
     requestOtpToken(input: RequestOtp) {
         if (input.over === OtpOver.Phone) {
             return this.commandBus.execute(new RequestOtpTokenCommand(input.resource))
         }
+        return this.emailService.sendEmailVerificationOtp(input.resource, 123456);
     }
 
     async verifyOtpToken(phoneNumber: string, otp: number) {
@@ -38,9 +41,6 @@ export class AuthService {
         }
 
         let user = await this.userService.findByPhoneNumber(extantOtpToken.phoneNumber);
-        if (!user) {
-            // user = await this.userService.createBasicOne(phoneNumber, UserType.Privider)
-        }
         return await this.buildAccessToken(user);
     }
 
@@ -55,6 +55,7 @@ export class AuthService {
     }
 
     async signupUser(input: Signup) {
-        return this.userService.createOne(input)
+        const user = await this.userService.createOne(input);
+        return this.buildAccessToken(user);
     }
 }

@@ -1,15 +1,15 @@
 import { Controller } from '@nestjs/common';
-import { Job } from './job.entity';
 import { ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
-import { JobService } from './job.service';
-import { AccessTokenPayload } from '../auth/interfaces/auth.interface';
+import { AccessTokenPayload } from 'auth/interfaces/auth.interface';
+import { Review } from './review.entity';
+import { ReviewService } from './review.service';
 
-@ApiTags('job')
-@Controller('job')
+@ApiTags('review')
+@Controller('reviews')
 @Crud({
     model: {
-        type: Job
+        type: Review
     },
     params: {
         id: {
@@ -25,6 +25,7 @@ import { AccessTokenPayload } from '../auth/interfaces/auth.interface';
         userId: +user.sub,
     }),
 })
-export class JobController implements CrudController<Job> {
-    constructor(public service: JobService) {}
+@Controller('review')
+export class ReviewController implements CrudController<Review> {
+    constructor(public service: ReviewService) {}
 }

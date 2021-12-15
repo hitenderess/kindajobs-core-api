@@ -11,6 +11,9 @@ import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from 'user/user.module';
 import { JwtConfigService } from './services/jwt.service';
 import { AppConfigModule } from '@shared/config/app-config.module';
+import { EmailService } from 'email/email.service';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
@@ -18,12 +21,16 @@ import { AppConfigModule } from '@shared/config/app-config.module';
     ConfigModule,
     UserModule,
     TypeOrmModule.forFeature([PhoneVerification]),
+    PassportModule.register({
+      session: false,
+      defaultStrategy: 'jwt',
+    }),
     JwtModule.registerAsync({
       imports: [AppConfigModule],
       useClass: JwtConfigService
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, AppConfigService, ...CommandHandlers]
+  providers: [AuthService, JwtStrategy, AppConfigService, EmailService, ...CommandHandlers]
 })
 export class AuthModule { }

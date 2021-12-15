@@ -41,6 +41,16 @@ export class AppConfigService {
         return this.get<number>('OTP_REQUEST_TIME_IN_SECONDS')
     }
 
+    get smtpOptions() {
+        return {
+            smtpHost: this.get('SMTP_HOST'),
+            smtpPort: this.get<number>('SMTP_PORT'),
+            smtpAuthUser: this.get('SMTP_AUTH_USER'),
+            smtpAuthPass: this.get('SMTP_AUTH_PASS'),
+            mailFrom: this.get('MAIL_FROM'),
+        }
+    }
+
     get<T = any>(propertyPath: string, defaultValue?: T): T | undefined {
         return this.configService.get<T>(propertyPath, defaultValue);
     }

@@ -1,7 +1,6 @@
-import { User } from "../user/user.entity";
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity } from "typeorm";
 import { AbstractEntity } from "@shared/entities/abstract.entity";
-import { JobType } from "@shared/enums";
+import { JobStatus, JobType } from "@shared/enums";
 import { JobPicture } from "./interfaces";
 
 class Geometry {
@@ -24,7 +23,9 @@ export class Job extends AbstractEntity {
     })
     type: JobType
 
-    @Column("simple-json")
+    @Column("simple-json", {
+        nullable: true
+    })
     pictures: JobPicture
 
     @Column()
@@ -48,23 +49,29 @@ export class Job extends AbstractEntity {
     @Column()
     price: number;
 
-    @Column()
-    status: string;
+    @Column({
+        default: JobStatus.Published
+    })
+    status: JobStatus;
 
     @Column({
         default: true
     })
     isActive: boolean;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     commission: number;
 
-    @Column('simple-array')
+    @Column('simple-array', {
+        nullable: true
+    })
     tools: []
 
     @Column('simple-json')
     jobLocation: Geometry;
-    
-    // @ManyToOne(() => User, user => user.jobs)
-    // user: Auth;
+
+    @Column()
+    userId: number;
 }
